@@ -7,5 +7,5 @@ urlpatterns = [
     path('dealer_registration_view/', views.dealer_registration_view, name='dealer_registration'),
     path('user_home/', views.user_home, name='user_home'),
     path('dealer_home/', views.dealer_home, name='dealer_home'),
-    path('login_view/', views.login, name='login'),
+    path('login_view/', views.login_view, name='login'),
 ]

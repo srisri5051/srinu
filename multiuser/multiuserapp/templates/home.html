@@ -1,0 +1,48 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home Page</title>
+    
+</head>
+<body>
+    <h1>Welcome to  Home Page</h1>
+    <p><a href="% url 'user_registration' %">User Registration</a></p>
+    <a href="% url 'dealer_registration' %">Dealer Registration</a></p>
+    <a href="% url 'login' %">Login</a></p>
+    
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        /* Center the links vertically and horizontally */
+        .centered-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* This makes sure the container spans the entire viewport height */
+        }
+    </style>
+</head>
+<body>
+    <div class="centered-links">
+        <h1>Welcome to Home Page</h1>
+        <p><a href="{% url 'user_registration' %}">User Registration</a></p>
+        <p><a href="{% url 'dealer_registration' %}">Dealer Registration</a></p>
+        <p><a href="{% url 'login' %}">Login</a></p>
+    </div>
+</body>
+</html>
