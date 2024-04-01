@@ -35,43 +35,59 @@ def dealer_registration_view(request):
     return render(request, 'dealer_registration.html', {'form': form})
 
 
-
 def login_view(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                if user.role == 'USERS':
-                    return redirect('user_home')
-                elif user.role == 'DEALER':
-                    return redirect('dealer_home')
-            else:
-                print("Authentication failed.")
+        
+        username = request.POST.get('uname')
+        password = request.POST.get('pass')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('user_home')  
         else:
-            print("Form is invalid:", form.errors)
+            return redirect('dealer_home')
     else:
-        form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+        return render(request, 'login.html')
+
 
 
 # def login_view(request):
 #     if request.method == 'POST':
-        
-#         username = request.POST.get('uname')
-#         password = request.POST.get('pass')
-
-#         user = authenticate(request, username=username, password=password)
-#         if user is not None:
-#             login(request, user)
-#             return redirect('home')  
+#         form = AuthenticationForm(request, data=request.POST)
+#         if form.is_valid():
+#             username = form.cleaned_data['username']
+#             password = form.cleaned_data['password']
+#             user = authenticate(request, username=username, password=password)
+#             if user is not None:
+#                 login(request, user)
+#                 if user.role == 'USERS':
+#                     return redirect('user_home')
+#                 elif user.role == 'DEALER':
+#                     return redirect('dealer_home')
+#             else:
+#                 print("Authentication failed.")
 #         else:
-#             return HttpResponse('Error, user does not exist')
+#             print("Form is invalid:", form.errors)
 #     else:
-#         return render(request, 'login.html')
+#         form = AuthenticationForm()
+#     return render(request, 'login.html', {'form': form})
+
+
+def login_view(request):
+    if request.method == 'POST':
+        
+        username = request.POST.get('uname')
+        password = request.POST.get('pass')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('user_home')  
+        else:
+            return redirect('dealer_home')
+    else:
+        return render(request, 'login.html')
 
 
 
